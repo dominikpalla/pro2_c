@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Users</title>
+</head>
+<body>
+<a th:href="@{/users/add}">ADD USER</a>
+<ul>
+  <li th:each="user: ${users}" th:text="${user.name}"></li>
+</ul>
+</body>
+</html>
