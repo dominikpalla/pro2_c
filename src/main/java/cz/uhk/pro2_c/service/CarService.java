@@ -1,12 +1,13 @@
 package cz.uhk.pro2_c.service;
 
-import cz.uhk.pro2_c.model.User;
+import cz.uhk.pro2_c.model.Car;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public interface UserService {
-    List<User> getUsers();
-    void saveUser(User user);
+public interface CarService {
+    List<Car> getCars();
+    void saveCar(Car car);
 }

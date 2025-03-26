@@ -1,7 +1,7 @@
 package cz.uhk.pro2_c.controller;
 
-import cz.uhk.pro2_c.model.User;
-import cz.uhk.pro2_c.service.UserService;
+import cz.uhk.pro2_c.model.Car;
+import cz.uhk.pro2_c.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,35 +9,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/cars")
+public class CarController {
 
-    private UserService userService;
+    private CarService carService;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public CarController(CarService carService) {
+        this.carService = carService;
     }
 
     @GetMapping("/")
     public String list(Model model){
-        model.addAttribute("users", userService.getUsers());
-        return "users_list";
+        model.addAttribute("cars", carService.getCars());
+        return "cars_list";
     }
 
     @GetMapping("/add")
     public String add(Model model){
-        model.addAttribute("user", new User());
-        return "users_add";
+        model.addAttribute("car", new Car());
+        return "cars_add";
     }
 
     @PostMapping("/add")
-    public String addSave(@ModelAttribute User user){
-        userService.saveUser(user);
-        return "redirect:/users/";
+    public String addSave(@ModelAttribute Car car){
+        carService.saveCar(car);
+        return "redirect:/cars/";
     }
 
 }
