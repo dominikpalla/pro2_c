@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Course</title>
+</head>
+<body>
+<form th:object="${course}" method="post" th:action="@{/courses/save}">
+    <input type="hidden" th:field="*{id}">
+    Name: <input type="text" th:field="*{name}"><br>
+    Lecturer: <select th:field="*{lecturer}">
+        <option th:each="lec: ${lecturers}"
+            th:value="${lec.id}" th:text="${lec.name}"></option>
+    </select><br>
+    <input type="submit" value="Save">
+</form>
+</body>
+</html>

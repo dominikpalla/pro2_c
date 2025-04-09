@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add New User</title>
+    <title>Add New Lecturer</title>
 </head>
 <body>
-<form th:object="${user}" method="post" th:action="@{/users/save}">
+<form th:object="${lecturer}" method="post" th:action="@{/lecturers/save}">
     <input type="hidden" th:field="*{id}">
     Name: <input type="text" th:field="*{name}"><br>
     <input type="submit" value="Save">
