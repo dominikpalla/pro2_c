@@ -1,10 +1,42 @@
 package cz.uhk.pro2_c;
 
+import cz.uhk.pro2_c.model.User;
+import cz.uhk.pro2_c.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class Pro2CApplication {
+
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public Pro2CApplication(UserService userService, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    private void addUser(String name, String username, String password, String role) {
+        User user = new User();
+        user.setName(name);
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setRole(role);
+        userService.saveUser(user);
+    }
+
+    @Bean
+    public CommandLineRunner init() {
+        return args -> {
+            addUser("User", "user", "heslo", "USER");
+            addUser("Admin", "admin", "heslo", "ADMIN");
+        };
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(Pro2CApplication.class, args);
